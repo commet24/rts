@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import aeroflotLogo from '../assets/partners/aeroflot.png';
+import xxlStudiosLogo from '../assets/partners/xxl-studios.png';
 
 const partnerSchema = z.object({
   name: z.string().min(1),
@@ -8,6 +10,17 @@ const partnerSchema = z.object({
 
 const partnersSchema = z.array(partnerSchema);
 
-export const partners = partnersSchema.parse([]);
+export const partners = partnersSchema.parse([
+  {
+    name: 'XXL Studios',
+    logoSrc: xxlStudiosLogo.src,
+    href: 'https://t.me/xxlstudios',
+  },
+  {
+    name: 'Аэрофлот',
+    logoSrc: aeroflotLogo.src,
+    href: 'https://t.me/Airlines698',
+  },
+]);
 
 export type Partner = z.infer<typeof partnerSchema>;

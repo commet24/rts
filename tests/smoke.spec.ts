@@ -16,12 +16,12 @@ test('главная страница показывает базовые сек
   await expect(page.getByRole('contentinfo')).toBeVisible();
 });
 
-test('пустая карусель партнёров сохраняет визуальный ритм', async ({
-  page,
-}) => {
+test('карусель партнёров показывает реальные ссылки', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
 
-  await expect(page.locator('.partner-tile--placeholder')).toHaveCount(6);
+  await expect(page.locator('.partner-tile--placeholder')).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'XXL Studios' })).toHaveCount(2);
+  await expect(page.getByRole('link', { name: 'Аэрофлот' })).toHaveCount(2);
 });
 
 test('пользователь может переключить светлую и тёмную тему', async ({

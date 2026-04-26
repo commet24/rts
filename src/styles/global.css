@@ -376,6 +376,13 @@ h2 {
   text-decoration: none;
 }
 
+.partner-tile img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
 .partner-track--static .partner-tile {
   min-width: 0;
   flex: 1 1 0;
