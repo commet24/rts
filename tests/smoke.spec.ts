@@ -35,7 +35,11 @@ test('партнёрская карусель остаётся внутри се
   const sectionBox = await page.locator('.partners-section').boundingBox();
 
   expect(partnerBox?.width).toBeGreaterThan(100);
+  expect((partnerBox?.x ?? 0) + (partnerBox?.width ?? 0)).toBeLessThanOrEqual(
+    (sectionBox?.x ?? 0) + (sectionBox?.width ?? 0),
+  );
   expect(sectionBox?.width).toBeLessThanOrEqual(390);
+  await expect(page.locator('.partner-tile--duplicate').first()).toBeHidden();
 });
 
 test('пользователь может переключить светлую и тёмную тему', async ({

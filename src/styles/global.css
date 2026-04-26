@@ -515,14 +515,20 @@ h2 {
   }
 
   .partner-track {
-    width: max-content;
-    gap: 0.65rem;
-    animation: partner-scroll 18s linear infinite;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+    animation: none;
   }
 
   .partner-tile {
-    width: clamp(6.8rem, 31vw, 8.5rem);
+    width: 100%;
     border-radius: 0.85rem;
+  }
+
+  .partner-tile--duplicate {
+    display: none;
   }
 
   .partner-track--static {

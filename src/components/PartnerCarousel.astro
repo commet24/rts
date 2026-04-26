@@ -15,8 +15,11 @@ const carouselItems =
 
 const hasPartners = partners.length > 0;
 const loopItems = hasPartners
-  ? [...carouselItems, ...carouselItems]
-  : carouselItems;
+  ? [
+      ...carouselItems.map((item) => ({ ...item, isDuplicate: false })),
+      ...carouselItems.map((item) => ({ ...item, isDuplicate: true })),
+    ]
+  : carouselItems.map((item) => ({ ...item, isDuplicate: false }));
 ---
 
 <section
@@ -36,7 +39,10 @@ const loopItems = hasPartners
         loopItems.map((item) =>
           item.type === 'partner' ? (
             <a
-              class="partner-tile"
+              class:list={[
+                'partner-tile',
+                { 'partner-tile--duplicate': item.isDuplicate },
+              ]}
               href={item.partner.href ?? '#partners'}
               target={item.partner.href ? '_blank' : undefined}
               rel={item.partner.href ? 'noreferrer' : undefined}
@@ -50,7 +56,11 @@ const loopItems = hasPartners
             </a>
           ) : (
             <div
-              class="partner-tile partner-tile--placeholder"
+              class:list={[
+                'partner-tile',
+                'partner-tile--placeholder',
+                { 'partner-tile--duplicate': item.isDuplicate },
+              ]}
               aria-hidden="true"
             >
               <span />
