@@ -1,0 +1,10 @@
+---
+import { siteConfig } from '@data/site.config';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer" id="contacts">
+  <p>© {year} {siteConfig.footer.copyrightOwner}</p>
+  <p>Статический сайт с безопасной конфигурацией и минифицированной сборкой.</p>
+</footer>

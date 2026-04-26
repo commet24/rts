@@ -1,0 +1,48 @@
+---
+import '@styles/global.css';
+import { siteConfig } from '@data/site.config';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const title = Astro.props.title ?? siteConfig.siteName;
+const description = Astro.props.description ?? siteConfig.description;
+const { skin, backgrounds } = siteConfig.visual;
+const themeStyle = [
+  `--may9-light-bg: url("${backgrounds.may9.light}")`,
+  `--may9-dark-bg: url("${backgrounds.may9.dark}")`,
+].join('; ');
+---
+
+<!doctype html>
+<html lang="ru" data-skin={skin} data-theme="light" style={themeStyle}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f4ef" />
+    <script is:inline>
+      (() => {
+        const storageKey = 'rts-theme';
+        const storedTheme = localStorage.getItem(storageKey);
+        const theme =
+          storedTheme === 'light' || storedTheme === 'dark'
+            ? storedTheme
+            : matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+
+        document.documentElement.dataset.theme = theme;
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute('content', theme === 'dark' ? '#08090d' : '#f7f4ef');
+      })();
+    </script>
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

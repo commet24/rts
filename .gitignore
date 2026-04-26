@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+playwright-report/
+test-results/
+.env
+.env.*
+
+# Original raw assets kept outside the app source tree.
+/9mayday.png
+/9maynight.png
+/ртс лого.png
+/rtrone.css
+/fonts/

@@ -1,0 +1,105 @@
+---
+import { liveEmbed } from '@data/live';
+import { siteConfig } from '@data/site.config';
+
+const iframeTitle = `${siteConfig.live.title} ${siteConfig.siteName}`;
+---
+
+<section class="hero-section" id="live" aria-labelledby="live-title">
+  <div class="hero-copy">
+    <p class="eyebrow">{siteConfig.live.eyebrow}</p>
+    <h1 id="live-title">{siteConfig.live.title}</h1>
+    <p class="hero-description">{siteConfig.live.description}</p>
+  </div>
+
+  <div class="player-card">
+    <div class="player-frame" aria-label="Плеер прямого эфира">
+      {
+        liveEmbed.hlsUrl ? (
+          <video
+            class="player-video"
+            controls
+            playsinline
+            preload="metadata"
+            aria-label={iframeTitle}
+            data-hls-src={liveEmbed.hlsUrl}
+          >
+            <a href={liveEmbed.sourcePageUrl} target="_blank" rel="noreferrer">
+              Открыть эфир на CTV
+            </a>
+          </video>
+        ) : liveEmbed.hasGeneratedPlayer && liveEmbed.embedUrl ? (
+          <iframe
+            src={liveEmbed.embedUrl}
+            title={iframeTitle}
+            loading="eager"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+            sandbox="allow-scripts allow-same-origin allow-presentation"
+            allowfullscreen
+          />
+        ) : (
+          <div class="player-fallback">
+            <p>Эфир ещё не извлечён в статическую конфигурацию.</p>
+            <a
+              class="source-link source-link--button"
+              href={liveEmbed.sourcePageUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Открыть эфир на CTV
+            </a>
+          </div>
+        )
+      }
+    </div>
+
+    <div class="player-meta">
+      <span class="status-pill" data-live-status={liveEmbed.status}>
+        {
+          liveEmbed.hlsUrl || liveEmbed.hasGeneratedPlayer
+            ? 'Источник извлечён'
+            : 'Нужен extract'
+        }
+      </span>
+      <a
+        class="source-link"
+        href={liveEmbed.sourcePageUrl}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Открыть эфир на CTV
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const videos = document.querySelectorAll<HTMLVideoElement>(
+    'video[data-hls-src]',
+  );
+
+  for (const video of videos) {
+    const hlsSrc = video.dataset.hlsSrc;
+
+    if (!hlsSrc) {
+      continue;
+    }
+
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = hlsSrc;
+      continue;
+    }
+
+    const { default: Hls } = await import('hls.js/light');
+
+    if (Hls.isSupported()) {
+      const hls = new Hls({
+        enableWorker: true,
+        lowLatencyMode: true,
+      });
+      hls.loadSource(hlsSrc);
+      hls.attachMedia(video);
+    }
+  }
+</script>

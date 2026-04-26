@@ -1,0 +1,19 @@
+---
+import Footer from '@components/Footer.astro';
+import Header from '@components/Header.astro';
+import LiveEmbed from '@components/LiveEmbed.astro';
+import PartnerCarousel from '@components/PartnerCarousel.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { siteConfig } from '@data/site.config';
+---
+
+<BaseLayout title={siteConfig.siteName} description={siteConfig.description}>
+  <div class="page-shell min-h-screen">
+    <Header />
+    <main>
+      <LiveEmbed />
+      <PartnerCarousel />
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

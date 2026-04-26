@@ -1,0 +1,83 @@
+---
+import { siteConfig } from '@data/site.config';
+---
+
+<header class="site-header" aria-label="Шапка сайта">
+  <a class="brand-link" href="/" aria-label="На главную">
+    <img
+      class="brand-logo"
+      src={siteConfig.brand.logoSrc}
+      alt={siteConfig.brand.logoAlt}
+      loading="eager"
+      decoding="async"
+    />
+  </a>
+
+  <div class="header-actions">
+    <nav class="site-nav" aria-label="Основная навигация">
+      {
+        siteConfig.navigation.map((item) => (
+          <a class="site-nav__link" href={item.href}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <button
+      class="theme-toggle"
+      type="button"
+      data-theme-toggle
+      aria-pressed="false"
+      aria-label="Включить тёмную тему"
+    >
+      <span data-theme-toggle-label>Тёмная тема</span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const storageKey = 'rts-theme';
+  const themeColor = document.querySelector<HTMLMetaElement>(
+    'meta[name="theme-color"]',
+  );
+  const toggles = document.querySelectorAll<HTMLButtonElement>(
+    '[data-theme-toggle]',
+  );
+
+  const applyTheme = (theme: 'light' | 'dark') => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem(storageKey, theme);
+    themeColor?.setAttribute(
+      'content',
+      theme === 'dark' ? '#08090d' : '#f7f4ef',
+    );
+
+    for (const toggle of toggles) {
+      const isDark = theme === 'dark';
+      const label = toggle.querySelector('[data-theme-toggle-label]');
+
+      toggle.setAttribute('aria-pressed', String(isDark));
+      toggle.setAttribute(
+        'aria-label',
+        isDark ? 'Включить светлую тему' : 'Включить тёмную тему',
+      );
+
+      if (label) {
+        label.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
+      }
+    }
+  };
+
+  const currentTheme =
+    document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+  applyTheme(currentTheme);
+
+  for (const toggle of toggles) {
+    toggle.addEventListener('click', () => {
+      applyTheme(
+        document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark',
+      );
+    });
+  }
+</script>
