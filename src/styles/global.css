@@ -508,38 +508,29 @@ h2 {
   }
 
   .partner-marquee {
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin-inline: -1rem;
-    padding-inline: 1rem;
+    overflow: hidden;
+    margin-inline: 0;
+    padding-inline: 0;
     mask-image: none;
-    scroll-padding-inline: 1rem;
-    scrollbar-width: none;
-  }
-
-  .partner-marquee::-webkit-scrollbar {
-    display: none;
   }
 
   .partner-track {
     width: max-content;
-    gap: 0.55rem;
-    animation: none;
-    scroll-snap-type: x mandatory;
+    gap: 0.65rem;
+    animation: partner-scroll 18s linear infinite;
   }
 
   .partner-tile {
-    width: min(72vw, 16rem);
+    width: clamp(6.8rem, 31vw, 8.5rem);
     border-radius: 0.85rem;
-    scroll-snap-align: start;
   }
 
   .partner-track--static {
-    width: max-content;
+    width: 100%;
   }
 
   .partner-track--static .partner-tile {
-    flex: 0 0 auto;
+    flex: 1 1 0;
   }
 
   .site-footer {

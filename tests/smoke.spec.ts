@@ -24,14 +24,18 @@ test('карусель партнёров показывает реальные 
   await expect(page.getByRole('link', { name: 'Аэрофлот' })).toHaveCount(2);
 });
 
-test('партнёры остаются крупными на мобильном экране', async ({ page }) => {
+test('партнёрская карусель остаётся внутри секции на мобильном экране', async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
 
   const firstPartner = page.getByRole('link', { name: 'XXL Studios' }).first();
-  const box = await firstPartner.boundingBox();
+  const partnerBox = await firstPartner.boundingBox();
+  const sectionBox = await page.locator('.partners-section').boundingBox();
 
-  expect(box?.width).toBeGreaterThan(240);
+  expect(partnerBox?.width).toBeGreaterThan(100);
+  expect(sectionBox?.width).toBeLessThanOrEqual(390);
 });
 
 test('пользователь может переключить светлую и тёмную тему', async ({
