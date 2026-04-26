@@ -23,10 +23,23 @@ const trustedHlsUrl =
     ? liveStream.hlsUrl
     : null;
 
+const toProxiedHlsUrl = (value: string | null) => {
+  if (!value) {
+    return null;
+  }
+
+  const url = new URL(value);
+  if (!url.pathname.startsWith('/hls/')) {
+    return value;
+  }
+
+  return `/api/hls/${url.pathname.slice('/hls/'.length)}${url.search}`;
+};
+
 export const liveEmbed = {
   sourcePageUrl: siteConfig.live.sourcePageUrl,
   embedUrl: trustedPlayerUrl,
-  hlsUrl: trustedHlsUrl,
+  hlsUrl: toProxiedHlsUrl(trustedHlsUrl),
   status: liveStream.status,
   extractedAt: liveStream.extractedAt,
   hasGeneratedPlayer: trustedPlayerUrl !== null,

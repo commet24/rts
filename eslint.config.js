@@ -20,6 +20,7 @@ export default [
       '*.config.{js,ts,mjs}',
       'eslint.config.js',
       'playwright.config.ts',
+      'functions/**/*.js',
       'scripts/**/*.{js,mjs,ts}',
       'tests/**/*.ts',
     ],
@@ -27,6 +28,10 @@ export default [
       globals: {
         console: 'readonly',
         process: 'readonly',
+        fetch: 'readonly',
+        Headers: 'readonly',
+        Response: 'readonly',
+        URL: 'readonly',
       },
     },
   },

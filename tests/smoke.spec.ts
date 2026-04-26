@@ -8,6 +8,10 @@ test('главная страница показывает базовые сек
     page.getByRole('heading', { name: 'Прямой эфир' }),
   ).toBeVisible();
   await expect(page.locator('video, iframe')).toBeVisible();
+  await expect(page.locator('video[data-hls-src]')).toHaveAttribute(
+    'data-hls-src',
+    /^\/api\/hls\//,
+  );
   await expect(page.getByRole('heading', { name: 'Партнёры' })).toBeVisible();
   await expect(page.getByRole('contentinfo')).toBeVisible();
 });
