@@ -5,8 +5,15 @@ import { siteConfig } from '@data/site.config';
 <header class="site-header" aria-label="Шапка сайта">
   <a class="brand-link" href="/" aria-label="На главную">
     <img
-      class="brand-logo"
-      src={siteConfig.brand.logoSrc}
+      class="brand-logo brand-logo--light"
+      src={siteConfig.brand.logoLightSrc}
+      alt={siteConfig.brand.logoAlt}
+      loading="eager"
+      decoding="async"
+    />
+    <img
+      class="brand-logo brand-logo--dark"
+      src={siteConfig.brand.logoDarkSrc}
       alt={siteConfig.brand.logoAlt}
       loading="eager"
       decoding="async"
@@ -31,9 +38,27 @@ import { siteConfig } from '@data/site.config';
   const themeColor = document.querySelector<HTMLMetaElement>(
     'meta[name="theme-color"]',
   );
+  const pageBackground = document.querySelector<HTMLImageElement>(
+    '[data-page-background]',
+  );
   const toggles = document.querySelectorAll<HTMLButtonElement>(
     '[data-theme-toggle]',
   );
+
+  const setBackgroundImage = (theme: 'light' | 'dark') => {
+    if (!pageBackground) {
+      return;
+    }
+
+    const nextSrc =
+      theme === 'dark'
+        ? pageBackground.dataset.darkSrc
+        : pageBackground.dataset.lightSrc;
+
+    if (nextSrc && pageBackground.getAttribute('src') !== nextSrc) {
+      pageBackground.setAttribute('src', nextSrc);
+    }
+  };
 
   const applyTheme = (theme: 'light' | 'dark') => {
     document.documentElement.dataset.theme = theme;
@@ -42,6 +67,7 @@ import { siteConfig } from '@data/site.config';
       'content',
       theme === 'dark' ? '#08090d' : '#f7f4ef',
     );
+    setBackgroundImage(theme);
 
     for (const toggle of toggles) {
       const isDark = theme === 'dark';

@@ -10,14 +10,10 @@ interface Props {
 const title = Astro.props.title ?? siteConfig.siteName;
 const description = Astro.props.description ?? siteConfig.description;
 const { skin, backgrounds } = siteConfig.visual;
-const themeStyle = [
-  `--may9-light-bg: url("${backgrounds.may9.light}")`,
-  `--may9-dark-bg: url("${backgrounds.may9.dark}")`,
-].join('; ');
 ---
 
 <!doctype html>
-<html lang="ru" data-skin={skin} data-theme="light" style={themeStyle}>
+<html lang="ru" data-skin={skin} data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -43,6 +39,37 @@ const themeStyle = [
     <title>{title}</title>
   </head>
   <body>
+    {
+      skin === 'may9' && (
+        <>
+          <img
+            class="page-background"
+            data-page-background
+            data-light-src={backgrounds.may9.light}
+            data-dark-src={backgrounds.may9.dark}
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </>
+      )
+    }
+    <script is:inline>
+      (() => {
+        const background = document.querySelector('[data-page-background]');
+        if (!background) return;
+
+        const theme =
+          document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        const src =
+          theme === 'dark'
+            ? background.dataset.darkSrc
+            : background.dataset.lightSrc;
+
+        if (src) background.setAttribute('src', src);
+      })();
+    </script>
     <slot />
   </body>
 </html>
