@@ -1,7 +1,7 @@
 ---
 import { partners } from '@data/partners';
 
-const placeholders = Array.from({ length: 8 }, (_, index) => ({
+const placeholders = Array.from({ length: 6 }, (_, index) => ({
   id: `placeholder-${index}`,
 }));
 
@@ -13,7 +13,10 @@ const carouselItems =
         placeholder,
       }));
 
-const loopItems = [...carouselItems, ...carouselItems];
+const hasPartners = partners.length > 0;
+const loopItems = hasPartners
+  ? [...carouselItems, ...carouselItems]
+  : carouselItems;
 ---
 
 <section
@@ -22,16 +25,13 @@ const loopItems = [...carouselItems, ...carouselItems];
   aria-labelledby="partners-title"
 >
   <div class="section-heading">
-    <p class="eyebrow">Партнёры</p>
-    <h2 id="partners-title">Партнёрская лента</h2>
-    <p>
-      Секция уже готова к логотипам партнёров. Пока список пуст, лента
-      показывает нейтральные плитки без выдуманных брендов.
-    </p>
+    <h2 id="partners-title">Партнёры</h2>
   </div>
 
   <div class="partner-marquee">
-    <div class="partner-track">
+    <div
+      class:list={['partner-track', { 'partner-track--static': !hasPartners }]}
+    >
       {
         loopItems.map((item) =>
           item.type === 'partner' ? (

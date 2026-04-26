@@ -32,16 +32,9 @@ const siteConfigSchema = z.object({
     logoSrc: z.string().min(1),
     logoAlt: z.string().min(1),
   }),
-  navigation: z.array(
-    z.object({
-      label: z.string().min(1),
-      href: z.string().startsWith('#'),
-    }),
-  ),
   visual: visualSchema,
   live: z.object({
     title: z.string().min(1),
-    eyebrow: z.string().min(1),
     description: z.string().min(1),
     sourcePageUrl: trustedUrlSchema,
     allowedEmbedHosts: z.array(z.string().min(1)).nonempty(),
@@ -59,11 +52,6 @@ export const siteConfig = siteConfigSchema.parse({
     logoSrc: rtsLogo.src,
     logoAlt: 'Логотип РТС',
   },
-  navigation: [
-    { label: 'Эфир', href: '#live' },
-    { label: 'Партнёры', href: '#partners' },
-    { label: 'Контакты', href: '#contacts' },
-  ],
   visual: {
     skin: 'may9',
     backgrounds: {
@@ -75,7 +63,6 @@ export const siteConfig = siteConfigSchema.parse({
   },
   live: {
     title: 'Прямой эфир',
-    eyebrow: 'РТС онлайн',
     description: 'Смотрите трансляцию телеканала в адаптивном плеере.',
     sourcePageUrl:
       'https://ctvroblox.com/channel.html?channel_id=9ac0570e701c4172a1e2d5c1edd62188',

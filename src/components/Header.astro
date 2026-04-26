@@ -13,27 +13,17 @@ import { siteConfig } from '@data/site.config';
     />
   </a>
 
-  <div class="header-actions">
-    <nav class="site-nav" aria-label="Основная навигация">
-      {
-        siteConfig.navigation.map((item) => (
-          <a class="site-nav__link" href={item.href}>
-            {item.label}
-          </a>
-        ))
-      }
-    </nav>
-
-    <button
-      class="theme-toggle"
-      type="button"
-      data-theme-toggle
-      aria-pressed="false"
-      aria-label="Включить тёмную тему"
-    >
-      <span data-theme-toggle-label>Тёмная тема</span>
-    </button>
-  </div>
+  <button
+    class="theme-toggle"
+    type="button"
+    data-theme-toggle
+    aria-pressed="false"
+    aria-label="Переключить тему"
+  >
+    <span class="theme-toggle__track" aria-hidden="true">
+      <span class="theme-toggle__thumb"></span>
+    </span>
+  </button>
 </header>
 
 <script>
@@ -55,17 +45,9 @@ import { siteConfig } from '@data/site.config';
 
     for (const toggle of toggles) {
       const isDark = theme === 'dark';
-      const label = toggle.querySelector('[data-theme-toggle-label]');
 
       toggle.setAttribute('aria-pressed', String(isDark));
-      toggle.setAttribute(
-        'aria-label',
-        isDark ? 'Включить светлую тему' : 'Включить тёмную тему',
-      );
-
-      if (label) {
-        label.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
-      }
+      toggle.setAttribute('aria-label', 'Переключить тему');
     }
   };
 
