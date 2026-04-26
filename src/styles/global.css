@@ -508,15 +508,38 @@ h2 {
   }
 
   .partner-marquee {
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
     mask-image: none;
+    scroll-padding-inline: 1rem;
+    scrollbar-width: none;
+  }
+
+  .partner-marquee::-webkit-scrollbar {
+    display: none;
   }
 
   .partner-track {
+    width: max-content;
     gap: 0.55rem;
+    animation: none;
+    scroll-snap-type: x mandatory;
   }
 
   .partner-tile {
+    width: min(72vw, 16rem);
     border-radius: 0.85rem;
+    scroll-snap-align: start;
+  }
+
+  .partner-track--static {
+    width: max-content;
+  }
+
+  .partner-track--static .partner-tile {
+    flex: 0 0 auto;
   }
 
   .site-footer {

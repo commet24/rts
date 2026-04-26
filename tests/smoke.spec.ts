@@ -24,19 +24,31 @@ test('карусель партнёров показывает реальные 
   await expect(page.getByRole('link', { name: 'Аэрофлот' })).toHaveCount(2);
 });
 
+test('партнёры остаются крупными на мобильном экране', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  const firstPartner = page.getByRole('link', { name: 'XXL Studios' }).first();
+  const box = await firstPartner.boundingBox();
+
+  expect(box?.width).toBeGreaterThan(240);
+});
+
 test('пользователь может переключить светлую и тёмную тему', async ({
   page,
 }) => {
+  await page.addInitScript(() => {
+    localStorage.removeItem('rts-theme');
+  });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
 
   const toggle = page.getByRole('button', { name: 'Переключить тему' });
   await expect(toggle).toBeVisible();
 
-  const initialTheme = await page.locator('html').getAttribute('data-theme');
+  await page.locator('html').evaluate((element) => {
+    element.dataset.theme = 'light';
+  });
   await toggle.click();
 
-  await expect(page.locator('html')).toHaveAttribute(
-    'data-theme',
-    initialTheme === 'dark' ? 'light' : 'dark',
-  );
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
 });
