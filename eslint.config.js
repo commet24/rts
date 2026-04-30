@@ -22,6 +22,7 @@ export default [
       'playwright.config.ts',
       'functions/**/*.js',
       'scripts/**/*.{js,mjs,ts}',
+      'tina/**/*.ts',
       'tests/**/*.ts',
     ],
     languageOptions: {

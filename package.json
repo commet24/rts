@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build && npm run check:size",
+    "cms:dev": "tinacms dev -c \"astro dev\"",
+    "cms:build": "node scripts/build-tina.mjs",
+    "build": "node scripts/build-tina.mjs && astro check && astro build && npm run check:size",
     "preview": "astro preview",
     "check": "astro check",
     "lint": "eslint .",
@@ -27,6 +29,7 @@
     "@axe-core/playwright": "^4.11.2",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.59.1",
+    "@tinacms/cli": "^2.2.5",
     "@types/node": "^25.6.0",
     "autoprefixer": "^10.5.0",
     "eslint": "^10.2.1",
@@ -35,6 +38,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
     "tailwindcss": "^3.4.19",
+    "tinacms": "^3.7.5",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.59.0"

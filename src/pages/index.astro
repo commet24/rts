@@ -1,6 +1,7 @@
 ---
 import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
+import LatestNews from '@components/LatestNews.astro';
 import LiveEmbed from '@components/LiveEmbed.astro';
 import PartnerCarousel from '@components/PartnerCarousel.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
@@ -12,6 +13,7 @@ import { siteConfig } from '@data/site.config';
     <Header />
     <main>
       <LiveEmbed />
+      <LatestNews />
       <PartnerCarousel />
     </main>
     <Footer />

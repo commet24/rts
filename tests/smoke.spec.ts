@@ -12,8 +12,25 @@ test('главная страница показывает базовые сек
     'data-hls-src',
     /^\/api\/hls\//,
   );
+  await expect(
+    page.getByRole('heading', { name: 'Новости', exact: true }),
+  ).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Партнёры' })).toBeVisible();
   await expect(page.getByRole('contentinfo')).toBeVisible();
+});
+
+test('новости доступны списком и отдельной страницей', async ({ page }) => {
+  await page.goto('/news/', { waitUntil: 'domcontentloaded' });
+
+  await expect(
+    page.getByRole('heading', { name: 'Новости' }).first(),
+  ).toBeVisible();
+
+  await page.getByRole('link', { name: /Новости РТС теперь на сайте/ }).click();
+
+  await expect(
+    page.getByRole('heading', { name: 'Новости РТС теперь на сайте' }),
+  ).toBeVisible();
 });
 
 test('карусель партнёров показывает реальные ссылки', async ({ page }) => {
@@ -46,16 +63,14 @@ test('пользователь может переключить светлую 
   page,
 }) => {
   await page.addInitScript(() => {
-    localStorage.removeItem('rts-theme');
+    localStorage.setItem('rts-theme', 'light');
   });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
 
   const toggle = page.getByRole('button', { name: 'Переключить тему' });
   await expect(toggle).toBeVisible();
+  await expect(toggle).toHaveAttribute('data-theme-ready', 'true');
 
-  await page.locator('html').evaluate((element) => {
-    element.dataset.theme = 'light';
-  });
   await toggle.click();
 
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');

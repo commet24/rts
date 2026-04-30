@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { siteConfig } from '@data/site.config';
+import { formatNewsDate, getPublishedNews, newsSlug } from '@data/news';
+
+const news = await getPublishedNews();
+---
+
+<BaseLayout
+  title={`Новости | ${siteConfig.siteName}`}
+  description="Новости РТС"
+>
+  <div class="page-shell min-h-screen">
+    <Header />
+    <main>
+      <section class="content-page" aria-labelledby="news-title">
+        <div class="section-heading">
+          <h1 id="news-title">Новости</h1>
+        </div>
+
+        <div class="news-grid news-grid--list">
+          {
+            news.map((entry) => (
+              <a class="news-card" href={`/news/${newsSlug(entry.id)}/`}>
+                <time datetime={entry.data.date.toISOString()}>
+                  {formatNewsDate(entry.data.date)}
+                </time>
+                <h2>{entry.data.title}</h2>
+                <p>{entry.data.description}</p>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

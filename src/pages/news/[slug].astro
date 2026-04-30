@@ -1,0 +1,43 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Footer from '@components/Footer.astro';
+import Header from '@components/Header.astro';
+import { formatNewsDate, newsSlug } from '@data/news';
+import { siteConfig } from '@data/site.config';
+
+export async function getStaticPaths() {
+  const news = await getCollection('news', ({ data }) => data.published);
+
+  return news.map((entry) => ({
+    params: { slug: newsSlug(entry.id) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  title={`${entry.data.title} | ${siteConfig.siteName}`}
+  description={entry.data.description}
+>
+  <div class="page-shell min-h-screen">
+    <Header />
+    <main>
+      <article class="content-page news-article">
+        <a class="back-link" href="/news/">Все новости</a>
+        <time datetime={entry.data.date.toISOString()}>
+          {formatNewsDate(entry.data.date)}
+        </time>
+        <h1>{entry.data.title}</h1>
+        <p class="article-description">{entry.data.description}</p>
+        <div class="article-body">
+          <Content />
+        </div>
+      </article>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

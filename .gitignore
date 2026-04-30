@@ -5,6 +5,8 @@ playwright-report/
 test-results/
 .env
 .env.*
+tina/__generated__/
+public/admin/
 
 # Original raw assets kept outside the app source tree.
 /9mayday.png
