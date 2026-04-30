@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "cms:dev": "tinacms dev -c \"astro dev\"",
     "cms:build": "node scripts/build-tina.mjs",
-    "build": "node scripts/build-tina.mjs && astro check && astro build && npm run check:size",
+    "build": "astro check && node scripts/build-tina.mjs && astro build && npm run check:size",
     "preview": "astro preview",
     "check": "astro check",
     "lint": "eslint .",

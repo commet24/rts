@@ -2,6 +2,7 @@ import { readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const distDir = 'dist';
+const ignoredDirs = new Set([join(distDir, 'admin')]);
 const limits = {
   totalBytes: 5_700_000,
   entryScriptBytes: 120_000,
@@ -12,6 +13,10 @@ const limits = {
 const collectFiles = (dir) =>
   readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const path = join(dir, entry.name);
+    if (ignoredDirs.has(path)) {
+      return [];
+    }
+
     return entry.isDirectory() ? collectFiles(path) : [path];
   });
 

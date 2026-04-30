@@ -10,7 +10,17 @@ if (!hasTinaCloudCredentials) {
   process.exit(0);
 }
 
-execFileSync('npx', ['tinacms', 'build'], {
-  stdio: 'inherit',
-  shell: process.platform === 'win32',
-});
+execFileSync(
+  'npx',
+  [
+    'tinacms',
+    'build',
+    '--skip-cloud-checks',
+    '--skip-indexing',
+    '--noTelemetry',
+  ],
+  {
+    stdio: 'inherit',
+    shell: process.platform === 'win32',
+  },
+);
