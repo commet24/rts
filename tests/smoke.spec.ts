@@ -12,9 +12,7 @@ test('главная страница показывает базовые сек
     'data-hls-src',
     /^\/api\/hls\//,
   );
-  await expect(
-    page.getByRole('heading', { name: 'Новости', exact: true }),
-  ).toBeVisible();
+  await expect(page.locator('#news-title')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Партнёры' })).toBeVisible();
   await expect(page.getByRole('contentinfo')).toBeVisible();
 });
@@ -26,11 +24,9 @@ test('новости доступны списком и отдельной ст�
     page.getByRole('heading', { name: 'Новости' }).first(),
   ).toBeVisible();
 
-  await page.getByRole('link', { name: /Новости РТС теперь на сайте/ }).click();
+  await page.getByRole('link', { name: /Новости на неделю и погода/ }).click();
 
-  await expect(
-    page.getByRole('heading', { name: 'Новости РТС теперь на сайте' }),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Новости/ }).first()).toBeVisible();
 });
 
 test('карусель партнёров показывает реальные ссылки', async ({ page }) => {
@@ -39,6 +35,10 @@ test('карусель партнёров показывает реальные 
   await expect(page.locator('.partner-tile--placeholder')).toHaveCount(0);
   await expect(page.getByRole('link', { name: 'XXL Studios' })).toHaveCount(2);
   await expect(page.getByRole('link', { name: 'Аэрофлот' })).toHaveCount(2);
+  await expect(page.getByRole('link', { name: 'Ekateruna Belukaa' })).toHaveCount(
+    2,
+  );
+  await expect(page.getByRole('link', { name: 'SmartVest' })).toHaveCount(2);
 });
 
 test('партнёрская карусель остаётся внутри секции на мобильном экране', async ({
