@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ru" data-skin="may9" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Прямой эфир телеканала РТС и партнёрские материалы."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f4ef" />
+    <script>
+      (() => {
+        const storageKey = 'rts-theme';
+        const storedTheme = localStorage.getItem(storageKey);
+        const theme =
+          storedTheme === 'light' || storedTheme === 'dark'
+            ? storedTheme
+            : matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+
+        document.documentElement.dataset.theme = theme;
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute('content', theme === 'dark' ? '#08090d' : '#f7f4ef');
+      })();
+    </script>
+    <title>РТС</title>
+    <link rel="stylesheet" href="/_astro/news.4wodLLCe.css" />
+  </head>
+  <body>
+    <img
+      class="page-background"
+      data-page-background
+      data-light-src="/_astro/9mayday.DzrRq0m8.png"
+      data-dark-src="/_astro/9maynight.D4wIqm4y.png"
+      alt=""
+      aria-hidden="true"
+      decoding="async"
+      fetchpriority="high"
+    />
+    <script>
+      (() => {
+        const background = document.querySelector('[data-page-background]');
+        if (!background) return;
+
+        const theme =
+          document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        const src =
+          theme === 'dark'
+            ? background.dataset.darkSrc
+            : background.dataset.lightSrc;
+
+        if (src) background.setAttribute('src', src);
+      })();
+    </script>
+    <div class="page-shell min-h-screen">
+      <header class="site-header" aria-label="Шапка сайта">
+        <a class="brand-link" href="/" aria-label="На главную">
+          <img
+            class="brand-logo brand-logo--light"
+            src="/_astro/rts-logo-light.Cl6Zwlep.png"
+            alt="Логотип РТС"
+            loading="eager"
+            decoding="async"
+          />
+          <img
+            class="brand-logo brand-logo--dark"
+            src="/_astro/rts-logo.COOKcwNN.png"
+            alt="Логотип РТС"
+            loading="eager"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="theme-toggle"
+          type="button"
+          data-theme-toggle
+          aria-pressed="false"
+          aria-label="Переключить тему"
+        >
+          <span class="theme-toggle__track" aria-hidden="true">
+            <span class="theme-toggle__thumb"></span>
+          </span>
+        </button>
+      </header>
+      <script type="module">
+        const n = 'rts-theme',
+          d = document.querySelector('meta[name="theme-color"]'),
+          r = document.querySelector('[data-page-background]'),
+          a = document.querySelectorAll('[data-theme-toggle]'),
+          s = (t) => {
+            if (!r) return;
+            const e = t === 'dark' ? r.dataset.darkSrc : r.dataset.lightSrc;
+            e && r.getAttribute('src') !== e && r.setAttribute('src', e);
+          },
+          o = (t) => {
+            ((document.documentElement.dataset.theme = t),
+              localStorage.setItem(n, t),
+              d?.setAttribute('content', t === 'dark' ? '#08090d' : '#f7f4ef'),
+              s(t));
+            for (const e of a) {
+              const c = t === 'dark';
+              (e.setAttribute('aria-pressed', String(c)),
+                e.setAttribute('aria-label', 'Переключить тему'));
+            }
+          },
+          l =
+            document.documentElement.dataset.theme === 'dark'
+              ? 'dark'
+              : 'light';
+        o(l);
+        for (const t of a)
+          (t.addEventListener('click', () => {
+            o(
+              document.documentElement.dataset.theme === 'dark'
+                ? 'light'
+                : 'dark',
+            );
+          }),
+            (t.dataset.themeReady = 'true'));
+      </script>
+      <main>
+        <section class="hero-section" id="live" aria-labelledby="live-title">
+          <div class="hero-copy">
+            <h1 id="live-title">Прямой эфир</h1>
+            <p class="hero-description">
+              Смотрите трансляцию телеканала в адаптивном плеере.
+            </p>
+          </div>
+          <div class="player-card">
+            <div class="player-frame" aria-label="Плеер прямого эфира">
+              <video
+                class="player-video"
+                controls
+                playsinline
+                preload="metadata"
+                aria-label="Прямой эфир РТС"
+                data-hls-src="/api/hls/9ac0570e701c4172a1e2d5c1edd62188/index.m3u8"
+              >
+                <a
+                  href="https://ctvroblox.com/channel.html?channel_id=9ac0570e701c4172a1e2d5c1edd62188"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Открыть трансляцию
+                </a>
+              </video>
+            </div>
+          </div>
+        </section>
+        <script
+          type="module"
+          src="/_astro/LiveEmbed.astro_astro_type_script_index_0_lang.WXBMoB7K.js"
+        ></script>
+        <section class="news-section" id="news" aria-labelledby="news-title">
+          <div class="section-heading"><h2 id="news-title">Новости</h2></div>
+          <div class="news-grid">
+            <a class="news-card" href="/news/-sos/"
+              ><time datetime="2026-07-30T05:18:55.330Z">30 июля 2026 г.</time>
+              <h3>РЕБРЕЙДИНГ САЙТА!</h3>
+              <p>
+                Вскоре наш сайт будет изменён по указу номер 2.пкМРТС в сайт для
+                Медиахолдинга РТС. Спасибо за понимание. Уважаемые пользователи,
+                рады сообщить вам о предстоящих улучшениях. В скором времени наш
+                ресурс будет обновлен с учетом новых требований. Эти изменения
+                направлены на повышение качества предоставляемой информации. Мы
+                стремимся сделать наш сайт еще более удобным и функциональным
+                для вас. Благодарим за ваше понимание и поддержку.
+              </p></a
+            ><a class="news-card" href="/news/-news/"
+              ><time datetime="2026-06-10T10:18:46.986Z">10 июня 2026 г.</time>
+              <h3>Партнерство!</h3>
+              <p>Партнерство с ARZHD</p></a
+            ><a class="news-card" href="/news/news_rts/"
+              ><time datetime="2026-04-30T09:19:40.843Z"
+                >30 апреля 2026 г.</time
+              >
+              <h3>Новости</h3>
+              <p>Новости на неделю и погода</p></a
+            >
+          </div>
+        </section>
+        <section
+          class="partners-section"
+          id="partners"
+          aria-labelledby="partners-title"
+        >
+          <div class="section-heading">
+            <h2 id="partners-title">Партнёры</h2>
+          </div>
+          <div class="partner-marquee">
+            <div class="partner-track">
+              <a
+                class="partner-tile"
+                href="https://t.me/xxlstudios"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="/_astro/xxl-studios.Dt1m9eb2.png"
+                  alt="XXL Studios"
+                  loading="lazy"
+                  decoding="async"
+                /> </a
+              ><a
+                class="partner-tile"
+                href="https://t.me/Airlines698"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="/_astro/aeroflot.EPmy36qX.png"
+                  alt="Аэрофлот"
+                  loading="lazy"
+                  decoding="async"
+                /> </a
+              ><a
+                class="partner-tile"
+                href="https://t.me/EkaterunaBelukaa"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="/_astro/ekateruna-belukaa.BhTo4inf.png"
+                  alt="Ekateruna Belukaa"
+                  loading="lazy"
+                  decoding="async"
+                /> </a
+              ><a
+                class="partner-tile"
+                href="https://t.me/SmartVestA"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="/_astro/smart-vest.DcxUf3Vq.png"
+                  alt="SmartVest"
+                  loading="lazy"
+                  decoding="async"
+                /> </a
+              ><a
+                class="partner-tile partner-tile--duplicate"
+                href="https://t.me/xxlstudios"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="/_astro/xxl-studios.Dt1m9eb2.png"
+                  alt="XXL Studios"
+                  loading="lazy"
+                  decoding="async"
+                /> </a
+              ><a
+                class="partner-tile partner-tile--duplicate"
+                href="https://t.me/Airlines698"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="/_astro/aeroflot.EPmy36qX.png"
+                  alt="Аэрофлот"
+                  loading="lazy"
+                  decoding="async"
+                /> </a
+              ><a
+                class="partner-tile partner-tile--duplicate"
+                href="https://t.me/EkaterunaBelukaa"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="/_astro/ekateruna-belukaa.BhTo4inf.png"
+                  alt="Ekateruna Belukaa"
+                  loading="lazy"
+                  decoding="async"
+                /> </a
+              ><a
+                class="partner-tile partner-tile--duplicate"
+                href="https://t.me/SmartVestA"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="/_astro/smart-vest.DcxUf3Vq.png"
+                  alt="SmartVest"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer" id="contacts"><p>© 2026 РТС</p></footer>
+    </div>
+  </body>
+</html>

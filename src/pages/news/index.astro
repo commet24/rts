@@ -12,15 +12,19 @@ const news = await getPublishedNews();
   title={`Новости | ${siteConfig.siteName}`}
   description="Новости РТС"
 >
+  <Header />
   <div class="page-shell min-h-screen">
-    <Header />
     <main>
       <section class="content-page" aria-labelledby="news-title">
         <div class="section-heading">
-          <h1 id="news-title">Новости</h1>
+          <h1 id="news-title" class="section-title">Все новости</h1>
+          <p class="section-desc">
+            Архив публикаций, новостей и официальных заявлений медиахолдинга
+            РТС.
+          </p>
         </div>
 
-        <div class="news-grid news-grid--list">
+        <div class="news-grid">
           {
             news.map((entry) => (
               <a class="news-card" href={`/news/${newsSlug(entry.id)}/`}>

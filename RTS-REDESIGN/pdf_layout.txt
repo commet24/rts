@@ -1,0 +1,155 @@
+=== LAYOUT FOR F:/RTS_WEBSITE/RTS-REDESIGN/Desktop.pdf ===
+Page 1 dimensions: Rect(0.0, 0.0, 1280.0, 1671.0)
+  [Image Block 0] bbox: (0.0, 0.0, 1280.0, 80.0)
+    Image: ext png, size 3540 bytes
+  [Image Block 1] bbox: (32.0, 9.0, 122.0, 70.0)
+    Image: ext jpeg, size 60597 bytes
+  [Image Block 2] bbox: (1089.0, 20.0, 1248.0, 60.0)
+    Image: ext png, size 2820 bytes
+  [Image Block 3] bbox: (32.0, 125.0, 1248.0, 389.0)
+    Image: ext png, size 9579 bytes
+  [Image Block 4] bbox: (49.624000549316406, 145.27545166015625, 707.3317260742188, 196.34744262695312)
+    Image: ext png, size 494 bytes
+  [Image Block 5] bbox: (32.0, 421.0, 544.0, 870.0)
+    Image: ext png, size 8820 bytes
+  [Image Block 6] bbox: (48.167999267578125, 442.20001220703125, 316.7829284667969, 480.8399963378906)
+    Image: ext png, size 351 bytes
+  [Image Block 7] bbox: (574.0, 421.0, 848.0, 804.9999389648438)
+    Image: ext jpeg, size 4492 bytes
+  [Image Block 8] bbox: (878.0, 421.0, 1152.0, 804.9999389648438)
+    Image: ext jpeg, size 4492 bytes
+  [Image Block 9] bbox: (1182.0, 421.0, 1280.0, 804.9999389648438)
+    Image: ext jpeg, size 4492 bytes
+  [Image Block 10] bbox: (574.0, 858.0, 857.22509765625, 870.0)
+    Image: ext png, size 2453 bytes
+  [Image Block 11] bbox: (1079.0, 421.0, 1280.0, 805.0)
+    Image: ext png, size 6100 bytes
+  [Image Block 12] bbox: (1079.0, 421.0, 1280.0, 805.0)
+    Image: ext png, size 1067 bytes
+  [Image Block 13] bbox: (736.0, 902.0, 1248.0, 1326.0)
+    Image: ext png, size 7322 bytes
+  [Image Block 14] bbox: (768.1553344726562, 1048.303955078125, 1214.383056640625, 1098.0880126953125)
+    Image: ext png, size 448 bytes
+  [Image Block 15] bbox: (32.0, 902.0, 706.0, 1326.0)
+    Image: ext png, size 10484 bytes
+  [Text Block 16] bbox: (134.0, 16.000030517578125, 1221.8980712890625, 55.07202911376953)
+    Span: 'rtstkЮru' | Font: Type3 (539 0 R) | Size: 32.0 | Color: 0
+    Span: 'ГлавнаяР' | Font: Type3 (539 0 R) | Size: 20.0 | Color: 0
+    Span: 'Участники' | Font: Type3 (539 0 R) | Size: 20.0 | Color: 0
+    Span: 'Смотреть' | Font: Type3 (539 0 R) | Size: 20.0 | Color: 0
+    Span: '˛овости' | Font: Type3 (539 0 R) | Size: 20.0 | Color: 0
+    Span: '˛ашРTelegram' | Font: Type3 (539 0 R) | Size: 18.0 | Color: 0
+  [Text Block 17] bbox: (48.0, 127.97137451171875, 709.8250732421875, 196.34738159179688)
+    Span: 'ЗдравствуйтеСР˝ыРДРРТСС' | Font: Type3 (539 0 R) | Size: 56.0 | Color: 0
+  [Text Block 18] bbox: (48.0, 199.48574829101562, 1131.6136474609375, 278.3477478027344)
+    Span: '˛ашРпроектРДРэтоРкомандаЬРкотораяРзанимаетсяРсозданиемРрегулярногоРконтентаЮР˝ыРнеРпростоРвыпускаемР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'материалыЬРмыРпостоянноРрастемЬРоттачиваемРформатыРиРищемРновыеРидеиЮР˛ашаРцельРДРделатьРконтентР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'качественнымЬРинтереснымРиРактуальнымРдляРнашейРаудиторииЮєШ' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+  [Text Block 19] bbox: (48.0, 303.4857482910156, 885.2225341796875, 356.3477478027344)
+    Span: '˝ыРсостоимРвР˝едиахолдингеРРТСЬРкоторыйРоткрываетРсвоиРдвериРдляРвсехСРє' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: '»СледитеРзаРнашимиРобновлениямиРДРмыРпродолжаемРработатьРиРдвигатьсяРвпередС' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+  [Text Block 20] bbox: (48.0, 423.99993896484375, 320.1434326171875, 492.3759460449219)
+    Span: 'Участники' | Font: Type3 (539 0 R) | Size: 56.0 | Color: 0
+  [Text Block 21] bbox: (48.0, 495.0, 483.516845703125, 807.8619995117188)
+    Span: 'ВРданнойРчастиРпредставленыРключевыеР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'проектыЬРмедиаресурсыРиРвиртуальныеР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'организацииЬРкоторыеРвходятРвРсоставР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'медиахолдингаРРТСРилиРактивноР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'сотрудничаютРсРнамиЮРˆаждыйРучастникР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'развиваетРсвоеРуникальноеРнаправлениеРвР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'RobloxРиРавиасимулятореРPTцSРДРотР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'интерактивногоРтелевиденияРиР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'радиовещанияРдоРсозданияРавиакомпанийЮР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: '˙истайтеРкарточкиЬРчтобыРпознакомитьсяРсР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'командамиРближеРиРприсоединитьсяРкРихР' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+    Span: 'сообществамЮ' | Font: Type3 (539 0 R) | Size: 22.0 | Color: 0
+  [Text Block 22] bbox: (619.2421875, 813.0, 1280.00244140625, 842.3040161132812)
+    Span: 'ЯрославРДронов' | Font: Type3 (539 0 R) | Size: 24.0 | Color: 0
+    Span: 'ВладимирР˜утин' | Font: Type3 (539 0 R) | Size: 24.0 | Color: 0
+    Span: 'Алл' | Font: Type3 (539 0 R) | Size: 24.0 | Color: 0
+  [Text Block 23] bbox: (265.0, 1031.0, 1217.8387451171875, 1122.5360107421875)
+    Span: 'ЗдесьРможетРбытьРвашРплеер' | Font: Type3 (539 0 R) | Size: 16.0 | Color: 0
+    Span: 'СмотретьРонлайн' | Font: Type3 (539 0 R) | Size: 56.0 | Color: 0
+  [Text Block 24] bbox: (777.8031005859375, 1098.0, 1216.1710205078125, 1156.303955078125)
+    Span: 'СмотритеРтрансляциюРнашегоРинтернетЭ' | Font: Type3 (539 0 R) | Size: 24.0 | Color: 0
+    Span: 'каналаРвРадаптивномРплеереЮ' | Font: Type3 (539 0 R) | Size: 24.0 | Color: 0
+==================================================
+
+=== LAYOUT FOR F:/RTS_WEBSITE/RTS-REDESIGN/Mobile.pdf ===
+Page 1 dimensions: Rect(0.0, 0.0, 375.0, 1671.0)
+  [Image Block 0] bbox: (0.0, 0.0, 375.0, 80.0)
+    Image: ext png, size 1595 bytes
+  [Image Block 1] bbox: (16.0, 12.0, 100.0, 68.0)
+    Image: ext jpeg, size 60597 bytes
+  [Image Block 2] bbox: (16.0, 110.0, 358.0, 495.0)
+    Image: ext png, size 5415 bytes
+  [Image Block 3] bbox: (31.52975082397461, 131.35995483398438, 293.4694519042969, 207.43995666503906)
+    Image: ext png, size 580 bytes
+  [Image Block 4] bbox: (16.0, 512.0, 358.0, 814.0)
+    Image: ext png, size 4210 bytes
+  [Image Block 5] bbox: (30.495750427246094, 531.6500244140625, 231.9569549560547, 560.6300048828125)
+    Image: ext png, size 279 bytes
+  [Image Block 6] bbox: (16.0, 830.0, 168.0, 1022.0)
+    Image: ext jpeg, size 4492 bytes
+  [Image Block 7] bbox: (186.0, 830.0, 338.0, 1022.0)
+    Image: ext jpeg, size 4492 bytes
+  [Image Block 8] bbox: (356.0, 830.0, 375.0, 1022.0)
+    Image: ext jpeg, size 4492 bytes
+  [Image Block 9] bbox: (271.0, 830.0, 375.0, 1051.0)
+    Image: ext png, size 2763 bytes
+  [Image Block 10] bbox: (271.0, 830.0, 375.0, 1051.0)
+    Image: ext png, size 603 bytes
+  [Image Block 11] bbox: (16.0, 1060.0, 87.08223724365234, 1072.0)
+    Image: ext png, size 1371 bytes
+  [Image Block 12] bbox: (16.0, 1094.0, 358.0, 1480.0)
+    Image: ext png, size 5377 bytes
+  [Image Block 13] bbox: (37.60539245605469, 1116.741943359375, 340.4027404785156, 1150.5240478515625)
+    Image: ext png, size 337 bytes
+  [Image Block 14] bbox: (33.0, 1207.0, 344.0, 1459.0)
+    Image: ext png, size 3382 bytes
+  [Text Block 15] bbox: (112.0, 17.000030517578125, 184.6057586669922, 56.07202911376953)
+    Span: 'rtstkЮru' | Font: Type3 (441 0 R) | Size: 32.0 | Color: 0
+  [Text Block 16] bbox: (30.3697509765625, 119.0, 303.3222351074219, 215.83999633789062)
+    Span: 'ЗдравствуйтеСРє' | Font: Type3 (441 0 R) | Size: 40.0 | Color: 0
+    Span: '˝ыРДРРТСС' | Font: Type3 (441 0 R) | Size: 40.0 | Color: 0
+  [Text Block 17] bbox: (30.3697509765625, 223.99993896484375, 336.7952575683594, 376.53594970703125)
+    Span: '˛ашРпроектРДРэтоРкомандаЬРкотораяР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'занимаетсяРсозданиемРрегулярногоР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'контентаЮР˝ыРнеРпростоРвыпускаемР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'материалыЬРмыРпостоянноРрастемЬР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'оттачиваемРформатыРиРищемРновыеРидеиЮР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: '˛ашаРцельРДРделатьРконтентР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'качественнымЬРинтереснымРиРактуальнымР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'дляРнашейРаудиторииЮєШ' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+  [Text Block 18] bbox: (30.3697509765625, 394.99993896484375, 338.4753723144531, 471.53594970703125)
+    Span: '˝ыРсостоимРвР˝едиахолдингеРРТСЬР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'которыйРоткрываетРсвоиРдвериРдляРвсехСРє' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: '»СледитеРзаРнашимиРобновлениямиРДРмыР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'продолжаемРработатьРиРдвигатьсяРвпередС' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+  [Text Block 19] bbox: (30.0, 572.0, 346.7395324707031, 800.5360107421875)
+    Span: 'ВРданнойРчастиРпредставленыРключевыеР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'проектыЬРмедиаресурсыРиРвиртуальныеР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'организацииЬРкоторыеРвходятРвРсоставР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'медиахолдингаРРТСРилиРактивноР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'сотрудничаютРсРнамиЮРˆаждыйРучастникР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'развиваетРсвоеРуникальноеРнаправлениеРвР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'RobloxРиРавиасимулятореРPTцSРДРотР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'интерактивногоРтелевиденияРиР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'радиовещанияРдоРсозданияРавиакомпанийЮР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: '˙истайтеРкарточкиЬРчтобыРпознакомитьсяРсР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'командамиРближеРиРприсоединитьсяРкРихР' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'сообществамЮ' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+  [Text Block 20] bbox: (30.3697509765625, 518.0, 234.477294921875, 569.281982421875)
+    Span: 'Участники' | Font: Type3 (441 0 R) | Size: 42.0 | Color: 0
+  [Text Block 21] bbox: (30.828125, 1030.0, 324.5506896972656, 1049.5360107421875)
+    Span: 'ЯрославРДронов' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'ВладимирР˜утин' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+  [Text Block 22] bbox: (36.275390625, 1105.0, 342.7477722167969, 1151.39794921875)
+    Span: 'СмотретьРонлайн' | Font: Type3 (441 0 R) | Size: 38.0 | Color: 0
+  [Text Block 23] bbox: (43.368743896484375, 1154.0, 335.614013671875, 1192.5360107421875)
+    Span: 'СмотритеРтрансляциюРнашегоРинтернетЭ' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+    Span: 'каналаРвРадаптивномРплеереЮ' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+  [Text Block 24] bbox: (83.0, 1321.0, 290.91650390625, 1340.5360107421875)
+    Span: 'ЗдесьРможетРбытьРвашРплеер' | Font: Type3 (441 0 R) | Size: 16.0 | Color: 0
+==================================================
+

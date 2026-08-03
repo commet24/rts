@@ -26,7 +26,9 @@ test('новости доступны списком и отдельной ст�
 
   await page.getByRole('link', { name: /Новости на неделю и погода/ }).click();
 
-  await expect(page.getByRole('heading', { name: /Новости/ }).first()).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /Новости/ }).first(),
+  ).toBeVisible();
 });
 
 test('карусель партнёров показывает реальные ссылки', async ({ page }) => {
@@ -35,9 +37,9 @@ test('карусель партнёров показывает реальные 
   await expect(page.locator('.partner-tile--placeholder')).toHaveCount(0);
   await expect(page.getByRole('link', { name: 'XXL Studios' })).toHaveCount(2);
   await expect(page.getByRole('link', { name: 'Аэрофлот' })).toHaveCount(2);
-  await expect(page.getByRole('link', { name: 'Ekateruna Belukaa' })).toHaveCount(
-    2,
-  );
+  await expect(
+    page.getByRole('link', { name: 'Ekateruna Belukaa' }),
+  ).toHaveCount(2);
   await expect(page.getByRole('link', { name: 'SmartVest' })).toHaveCount(2);
 });
 

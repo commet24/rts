@@ -1,25 +1,5 @@
 ---
 import { partners } from '@data/partners';
-
-const placeholders = Array.from({ length: 6 }, (_, index) => ({
-  id: `placeholder-${index}`,
-}));
-
-const carouselItems =
-  partners.length > 0
-    ? partners.map((partner) => ({ type: 'partner' as const, partner }))
-    : placeholders.map((placeholder) => ({
-        type: 'placeholder' as const,
-        placeholder,
-      }));
-
-const hasPartners = partners.length > 0;
-const loopItems = hasPartners
-  ? [
-      ...carouselItems.map((item) => ({ ...item, isDuplicate: false })),
-      ...carouselItems.map((item) => ({ ...item, isDuplicate: true })),
-    ]
-  : carouselItems.map((item) => ({ ...item, isDuplicate: false }));
 ---
 
 <section
@@ -27,47 +7,189 @@ const loopItems = hasPartners
   id="partners"
   aria-labelledby="partners-title"
 >
-  <div class="section-heading">
-    <h2 id="partners-title">Партнёры</h2>
-  </div>
+  <div class="participants-grid">
+    <div class="participants-info">
+      <h2 id="partners-title" class="section-title">Участники</h2>
+      <p class="section-desc">
+        В данной части представлены ключевые проекты, медиаресурсы и виртуальные
+        организации, которые входят в состав медиахолдинга РТС или активно
+        сотрудничают с нами. Каждый участник развивает свое уникальное
+        направление в Roblox и авиасимуляторе PTFS — от интерактивного
+        телевидения и радиовещания до создания авиакомпаний. Листайте карточки,
+        чтобы познакомиться с командами ближе и присоединиться к их сообществам.
+      </p>
+    </div>
 
-  <div class="partner-marquee">
-    <div
-      class:list={['partner-track', { 'partner-track--static': !hasPartners }]}
-    >
-      {
-        loopItems.map((item) =>
-          item.type === 'partner' ? (
+    <div class="participants-carousel-container">
+      <div class="participants-track">
+        {
+          partners.map((partner) => (
             <a
-              class:list={[
-                'partner-tile',
-                { 'partner-tile--duplicate': item.isDuplicate },
-              ]}
-              href={item.partner.href ?? '#partners'}
-              target={item.partner.href ? '_blank' : undefined}
-              rel={item.partner.href ? 'noreferrer' : undefined}
+              class="participant-card"
+              href={partner.href ?? '#partners'}
+              target={partner.href ? '_blank' : undefined}
+              rel={partner.href ? 'noreferrer' : undefined}
             >
-              <img
-                src={item.partner.logoSrc}
-                alt={item.partner.name}
-                loading="lazy"
-                decoding="async"
-              />
+              <div class="participant-img-box">
+                <img
+                  src={partner.logoSrc}
+                  alt={partner.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="participant-name">{partner.name}</div>
             </a>
-          ) : (
-            <div
-              class:list={[
-                'partner-tile',
-                'partner-tile--placeholder',
-                { 'partner-tile--duplicate': item.isDuplicate },
-              ]}
-              aria-hidden="true"
-            >
-              <span />
-            </div>
-          ),
-        )
-      }
+          ))
+        }
+      </div>
+      <div class="participants-slider-bar">
+        <div class="participants-slider-thumb"></div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const track = document.querySelector<HTMLDivElement>('.participants-track');
+    const thumb = document.querySelector<HTMLDivElement>(
+      '.participants-slider-thumb',
+    );
+    const bar = document.querySelector<HTMLDivElement>(
+      '.participants-slider-bar',
+    );
+
+    if (track && thumb && bar) {
+      const updateSlider = () => {
+        const scrollWidth = track.scrollWidth;
+        const clientWidth = track.clientWidth;
+        const scrollLeft = track.scrollLeft;
+
+        const maxScroll = scrollWidth - clientWidth;
+        if (maxScroll <= 0) {
+          thumb.style.width = '100%';
+          thumb.style.left = '0';
+          return;
+        }
+
+        const ratio = scrollLeft / maxScroll;
+        const barWidth = bar.clientWidth;
+        const thumbWidth = Math.max(40, (clientWidth / scrollWidth) * barWidth);
+        const maxThumbLeft = barWidth - thumbWidth;
+
+        thumb.style.width = `${thumbWidth}px`;
+        thumb.style.left = `${ratio * maxThumbLeft}px`;
+      };
+
+      // Scroll listener
+      let ticking = false;
+      track.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            if (!isDragging) {
+              updateSlider();
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      // Window resize listener
+      window.addEventListener('resize', updateSlider);
+
+      // Initial trigger
+      updateSlider();
+
+      // Drag event state
+      let isDragging = false;
+      let startX = 0;
+      let startLeft = 0;
+
+      const onDragStart = (clientX: number) => {
+        isDragging = true;
+        startX = clientX;
+        startLeft = parseFloat(thumb.style.left) || 0;
+        document.body.classList.add('is-dragging-slider');
+        thumb.classList.add('is-active');
+      };
+
+      const onDragMove = (clientX: number) => {
+        if (!isDragging) return;
+        const dx = clientX - startX;
+        const barWidth = bar.clientWidth;
+        const thumbWidth = thumb.clientWidth;
+        const maxThumbLeft = barWidth - thumbWidth;
+
+        let newLeft = startLeft + dx;
+        newLeft = Math.max(0, Math.min(newLeft, maxThumbLeft));
+
+        thumb.style.left = `${newLeft}px`;
+
+        const ratio = maxThumbLeft > 0 ? newLeft / maxThumbLeft : 0;
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        track.scrollLeft = ratio * maxScroll;
+      };
+
+      const onDragEnd = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        document.body.classList.remove('is-dragging-slider');
+        thumb.classList.remove('is-active');
+      };
+
+      // Mouse drag triggers
+      thumb.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        onDragStart(e.clientX);
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        onDragMove(e.clientX);
+      });
+
+      window.addEventListener('mouseup', onDragEnd);
+
+      // Touch drag triggers (mobile support)
+      thumb.addEventListener(
+        'touchstart',
+        (e) => {
+          onDragStart(e.touches[0].clientX);
+        },
+        { passive: true },
+      );
+
+      window.addEventListener(
+        'touchmove',
+        (e) => {
+          onDragMove(e.touches[0].clientX);
+        },
+        { passive: true },
+      );
+
+      window.addEventListener('touchend', onDragEnd);
+
+      // Click to scroll
+      bar.addEventListener('click', (e) => {
+        if (e.target === thumb) return;
+        const rect = bar.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const thumbWidth = thumb.clientWidth;
+        const barWidth = bar.clientWidth;
+        const maxThumbLeft = barWidth - thumbWidth;
+
+        let targetLeft = clickX - thumbWidth / 2;
+        targetLeft = Math.max(0, Math.min(targetLeft, maxThumbLeft));
+
+        const ratio = maxThumbLeft > 0 ? targetLeft / maxThumbLeft : 0;
+        const maxScroll = track.scrollWidth - track.clientWidth;
+
+        track.scrollTo({
+          left: ratio * maxScroll,
+          behavior: 'smooth',
+        });
+      });
+    }
+  });
+</script>

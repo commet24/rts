@@ -5,13 +5,8 @@ import { siteConfig } from '@data/site.config';
 const iframeTitle = `${siteConfig.live.title} ${siteConfig.siteName}`;
 ---
 
-<section class="hero-section" id="live" aria-labelledby="live-title">
-  <div class="hero-copy">
-    <h1 id="live-title">{siteConfig.live.title}</h1>
-    <p class="hero-description">{siteConfig.live.description}</p>
-  </div>
-
-  <div class="player-card">
+<section class="live-section" id="live" aria-labelledby="live-title">
+  <div class="live-player-container">
     <div class="player-frame" aria-label="Плеер прямого эфира">
       {
         liveEmbed.hlsUrl ? (
@@ -39,19 +34,18 @@ const iframeTitle = `${siteConfig.live.title} ${siteConfig.siteName}`;
           />
         ) : (
           <div class="player-fallback">
-            <p>Эфир временно недоступен.</p>
-            <a
-              class="source-link source-link--button"
-              href={liveEmbed.sourcePageUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Открыть трансляцию
-            </a>
+            <span>Здесь может быть ваш плеер</span>
           </div>
         )
       }
     </div>
+  </div>
+
+  <div class="live-text-container">
+    <h2 id="live-title">Смотреть онлайн</h2>
+    <p class="live-description">
+      Смотрите трансляцию нашего интернет-канала в адаптивном плеере.
+    </p>
   </div>
 </section>
 

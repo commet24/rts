@@ -2,91 +2,168 @@
 import { siteConfig } from '@data/site.config';
 ---
 
-<header class="site-header" aria-label="Шапка сайта">
-  <a class="brand-link" href="/" aria-label="На главную">
-    <img
-      class="brand-logo brand-logo--light"
-      src={siteConfig.brand.logoLightSrc}
-      alt={siteConfig.brand.logoAlt}
-      loading="eager"
-      decoding="async"
-    />
-    <img
-      class="brand-logo brand-logo--dark"
-      src={siteConfig.brand.logoDarkSrc}
-      alt={siteConfig.brand.logoAlt}
-      loading="eager"
-      decoding="async"
-    />
-  </a>
+<header class="site-header" id="site-header" aria-label="Шапка сайта">
+  <div class="header-inner">
+    <a class="brand-link" href="/" aria-label="На главную">
+      <img
+        class="brand-logo-img"
+        src={siteConfig.brand.logoRedesignSrc}
+        alt={siteConfig.brand.logoAlt}
+        loading="eager"
+        decoding="async"
+        transition:name="logo"
+        transition:persist
+      />
+      <span id="header-host" class="brand-host"></span>
+    </a>
 
-  <button
-    class="theme-toggle"
-    type="button"
-    data-theme-toggle
-    aria-pressed="false"
-    aria-label="Переключить тему"
-  >
-    <span class="theme-toggle__track" aria-hidden="true">
-      <span class="theme-toggle__thumb"></span>
-    </span>
-  </button>
+    <nav class="site-nav" aria-label="Главная навигация">
+      <a class="site-nav-link" href="/">Главная</a>
+      <a class="site-nav-link" href="/#partners">Участники</a>
+      <a class="site-nav-link" href="/#live">Смотреть</a>
+      <a class="site-nav-link" href="/news/">Новости</a>
+      <a
+        class="telegram-btn"
+        href={siteConfig.telegramUrl}
+        target="_blank"
+        rel="noreferrer">Наш Telegram</a
+      >
+    </nav>
+
+    <div class="header-actions">
+      <button
+        class="menu-toggle"
+        type="button"
+        id="menu-toggle"
+        aria-label="Открыть меню"
+        aria-expanded="false"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="menu-backdrop" id="menu-backdrop"></div>
 </header>
 
 <script>
-  const storageKey = 'rts-theme';
-  const themeColor = document.querySelector<HTMLMetaElement>(
-    'meta[name="theme-color"]',
-  );
-  const pageBackground = document.querySelector<HTMLImageElement>(
-    '[data-page-background]',
-  );
-  const toggles = document.querySelectorAll<HTMLButtonElement>(
-    '[data-theme-toggle]',
-  );
-
-  const setBackgroundImage = (theme: 'light' | 'dark') => {
-    if (!pageBackground) {
-      return;
+  document.addEventListener('astro:page-load', () => {
+    // Dynamic Host Parsing Logic
+    try {
+      const hostSpan = document.getElementById('header-host');
+      if (hostSpan) {
+        hostSpan.textContent = window.location.host || 'rtstk.ru';
+      }
+    } catch {
+      // If error, do absolutely nothing (leave it empty)
     }
 
-    const nextSrc =
-      theme === 'dark'
-        ? pageBackground.dataset.darkSrc
-        : pageBackground.dataset.lightSrc;
+    // Set active nav link
+    try {
+      const currentPath = window.location.pathname;
+      const navLinks = document.querySelectorAll('.site-nav-link');
 
-    if (nextSrc && pageBackground.getAttribute('src') !== nextSrc) {
-      pageBackground.setAttribute('src', nextSrc);
+      const clearActive = () => {
+        for (const link of navLinks) {
+          link.classList.remove('is-active');
+        }
+      };
+
+      if (currentPath !== '/' && currentPath !== '/index.html') {
+        clearActive();
+        for (const link of navLinks) {
+          const href = link.getAttribute('href');
+          if (
+            href &&
+            href.startsWith('/news') &&
+            currentPath.startsWith('/news')
+          ) {
+            link.classList.add('is-active');
+          }
+        }
+      } else {
+        // We are on the homepage: active link changes as we scroll the page
+        const observerOptions = {
+          root: null,
+          rootMargin: '-30% 0px -60% 0px',
+          threshold: 0,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              clearActive();
+              for (const link of navLinks) {
+                const href = link.getAttribute('href');
+                if (!id && href === '/') {
+                  link.classList.add('is-active');
+                } else if (
+                  id &&
+                  (href === `/#${id}` || href === `/index.html#${id}`)
+                ) {
+                  link.classList.add('is-active');
+                }
+              }
+            }
+          }
+        }, observerOptions);
+
+        const topElement = document.querySelector('.hero-section');
+        const partnersElement = document.getElementById('partners');
+        const liveElement = document.getElementById('live');
+        const newsElement = document.getElementById('news');
+
+        if (topElement) observer.observe(topElement);
+        if (partnersElement) observer.observe(partnersElement);
+        if (liveElement) observer.observe(liveElement);
+        if (newsElement) observer.observe(newsElement);
+      }
+    } catch {
+      // If error, ignore
     }
-  };
 
-  const applyTheme = (theme: 'light' | 'dark') => {
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem(storageKey, theme);
-    themeColor?.setAttribute(
-      'content',
-      theme === 'dark' ? '#08090d' : '#f7f4ef',
-    );
-    setBackgroundImage(theme);
+    // Mobile Menu Logic
+    const header = document.getElementById('site-header');
+    const menuToggle = document.getElementById('menu-toggle');
 
-    for (const toggle of toggles) {
-      const isDark = theme === 'dark';
+    if (menuToggle && header) {
+      header.classList.remove('is-active');
+      menuToggle.setAttribute('aria-expanded', 'false');
 
-      toggle.setAttribute('aria-pressed', String(isDark));
-      toggle.setAttribute('aria-label', 'Переключить тему');
+      menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+        header.classList.toggle('is-active');
+      });
+
+      const links = header.querySelectorAll('.site-nav-link, .telegram-btn');
+      for (const link of links) {
+        link.addEventListener('click', () => {
+          header.classList.remove('is-active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      const backdrop = document.getElementById('menu-backdrop');
+      if (backdrop) {
+        backdrop.addEventListener('click', () => {
+          header.classList.remove('is-active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      }
     }
-  };
-
-  const currentTheme =
-    document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
-  applyTheme(currentTheme);
-
-  for (const toggle of toggles) {
-    toggle.addEventListener('click', () => {
-      applyTheme(
-        document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark',
-      );
-    });
-    toggle.dataset.themeReady = 'true';
-  }
+  });
 </script>

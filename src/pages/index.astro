@@ -1,6 +1,7 @@
 ---
 import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
+import Hero from '@components/Hero.astro';
 import LatestNews from '@components/LatestNews.astro';
 import LiveEmbed from '@components/LiveEmbed.astro';
 import PartnerCarousel from '@components/PartnerCarousel.astro';
@@ -9,12 +10,13 @@ import { siteConfig } from '@data/site.config';
 ---
 
 <BaseLayout title={siteConfig.siteName} description={siteConfig.description}>
+  <Header />
   <div class="page-shell min-h-screen">
-    <Header />
     <main>
+      <Hero />
+      <PartnerCarousel />
       <LiveEmbed />
       <LatestNews />
-      <PartnerCarousel />
     </main>
     <Footer />
   </div>

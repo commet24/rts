@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru" data-skin="may9" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Партнерство с ARZHD " />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f4ef" />
+    <script>
+      (() => {
+        const storageKey = 'rts-theme';
+        const storedTheme = localStorage.getItem(storageKey);
+        const theme =
+          storedTheme === 'light' || storedTheme === 'dark'
+            ? storedTheme
+            : matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+
+        document.documentElement.dataset.theme = theme;
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute('content', theme === 'dark' ? '#08090d' : '#f7f4ef');
+      })();
+    </script>
+    <title>Партнерство! | РТС</title>
+    <link rel="stylesheet" href="/_astro/news.4wodLLCe.css" />
+  </head>
+  <body>
+    <img
+      class="page-background"
+      data-page-background
+      data-light-src="/_astro/9mayday.DzrRq0m8.png"
+      data-dark-src="/_astro/9maynight.D4wIqm4y.png"
+      alt=""
+      aria-hidden="true"
+      decoding="async"
+      fetchpriority="high"
+    />
+    <script>
+      (() => {
+        const background = document.querySelector('[data-page-background]');
+        if (!background) return;
+
+        const theme =
+          document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        const src =
+          theme === 'dark'
+            ? background.dataset.darkSrc
+            : background.dataset.lightSrc;
+
+        if (src) background.setAttribute('src', src);
+      })();
+    </script>
+    <div class="page-shell min-h-screen">
+      <header class="site-header" aria-label="Шапка сайта">
+        <a class="brand-link" href="/" aria-label="На главную">
+          <img
+            class="brand-logo brand-logo--light"
+            src="/_astro/rts-logo-light.Cl6Zwlep.png"
+            alt="Логотип РТС"
+            loading="eager"
+            decoding="async"
+          />
+          <img
+            class="brand-logo brand-logo--dark"
+            src="/_astro/rts-logo.COOKcwNN.png"
+            alt="Логотип РТС"
+            loading="eager"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="theme-toggle"
+          type="button"
+          data-theme-toggle
+          aria-pressed="false"
+          aria-label="Переключить тему"
+        >
+          <span class="theme-toggle__track" aria-hidden="true">
+            <span class="theme-toggle__thumb"></span>
+          </span>
+        </button>
+      </header>
+      <script type="module">
+        const n = 'rts-theme',
+          d = document.querySelector('meta[name="theme-color"]'),
+          r = document.querySelector('[data-page-background]'),
+          a = document.querySelectorAll('[data-theme-toggle]'),
+          s = (t) => {
+            if (!r) return;
+            const e = t === 'dark' ? r.dataset.darkSrc : r.dataset.lightSrc;
+            e && r.getAttribute('src') !== e && r.setAttribute('src', e);
+          },
+          o = (t) => {
+            ((document.documentElement.dataset.theme = t),
+              localStorage.setItem(n, t),
+              d?.setAttribute('content', t === 'dark' ? '#08090d' : '#f7f4ef'),
+              s(t));
+            for (const e of a) {
+              const c = t === 'dark';
+              (e.setAttribute('aria-pressed', String(c)),
+                e.setAttribute('aria-label', 'Переключить тему'));
+            }
+          },
+          l =
+            document.documentElement.dataset.theme === 'dark'
+              ? 'dark'
+              : 'light';
+        o(l);
+        for (const t of a)
+          (t.addEventListener('click', () => {
+            o(
+              document.documentElement.dataset.theme === 'dark'
+                ? 'light'
+                : 'dark',
+            );
+          }),
+            (t.dataset.themeReady = 'true'));
+      </script>
+      <main>
+        <article class="content-page news-article">
+          <a class="back-link" href="/news/">Все новости</a>
+          <time datetime="2026-06-10T10:18:46.986Z"> 10 июня 2026 г. </time>
+          <h1>Партнерство!</h1>
+          <p class="article-description">Партнерство с ARZHD</p>
+          <div class="article-body">
+            <p>Хотите работать Проводником, машинистом, охраной?</p>
+            <p>Вам в АРЖД</p>
+            <p>• Рейсы каждую неделю</p>
+            <p>• Качественные направление</p>
+            <p>• Качественные модели</p>
+            <p>• Станьте кем хотите!</p>
+            <p>• Добрый персонал</p>
+            <p>• Администрация всегда поможет вам!</p>
+            <p>Наш дискорд</p>
+            <p>
+              <a href="https://discord.gg/eJ3VW4sAvY"
+                >https://discord.gg/eJ3VW4sAvY</a
+              >
+            </p>
+            <p>наш телеграм:</p>
+            <p>
+              <a href="https://t.me/ARZHD_fpcRBX">https://t.me/ARZHD_fpcRBX</a>
+            </p>
+            <p>- созданы чтобы соединять</p>
+          </div>
+        </article>
+      </main>
+      <footer class="site-footer" id="contacts"><p>© 2026 РТС</p></footer>
+    </div>
+  </body>
+</html>

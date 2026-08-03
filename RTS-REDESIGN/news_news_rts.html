@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ru" data-skin="may9" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Новости на неделю и погода " />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f4ef" />
+    <script>
+      (() => {
+        const storageKey = 'rts-theme';
+        const storedTheme = localStorage.getItem(storageKey);
+        const theme =
+          storedTheme === 'light' || storedTheme === 'dark'
+            ? storedTheme
+            : matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+
+        document.documentElement.dataset.theme = theme;
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute('content', theme === 'dark' ? '#08090d' : '#f7f4ef');
+      })();
+    </script>
+    <title>Новости | РТС</title>
+    <link rel="stylesheet" href="/_astro/news.4wodLLCe.css" />
+  </head>
+  <body>
+    <img
+      class="page-background"
+      data-page-background
+      data-light-src="/_astro/9mayday.DzrRq0m8.png"
+      data-dark-src="/_astro/9maynight.D4wIqm4y.png"
+      alt=""
+      aria-hidden="true"
+      decoding="async"
+      fetchpriority="high"
+    />
+    <script>
+      (() => {
+        const background = document.querySelector('[data-page-background]');
+        if (!background) return;
+
+        const theme =
+          document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        const src =
+          theme === 'dark'
+            ? background.dataset.darkSrc
+            : background.dataset.lightSrc;
+
+        if (src) background.setAttribute('src', src);
+      })();
+    </script>
+    <div class="page-shell min-h-screen">
+      <header class="site-header" aria-label="Шапка сайта">
+        <a class="brand-link" href="/" aria-label="На главную">
+          <img
+            class="brand-logo brand-logo--light"
+            src="/_astro/rts-logo-light.Cl6Zwlep.png"
+            alt="Логотип РТС"
+            loading="eager"
+            decoding="async"
+          />
+          <img
+            class="brand-logo brand-logo--dark"
+            src="/_astro/rts-logo.COOKcwNN.png"
+            alt="Логотип РТС"
+            loading="eager"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="theme-toggle"
+          type="button"
+          data-theme-toggle
+          aria-pressed="false"
+          aria-label="Переключить тему"
+        >
+          <span class="theme-toggle__track" aria-hidden="true">
+            <span class="theme-toggle__thumb"></span>
+          </span>
+        </button>
+      </header>
+      <script type="module">
+        const n = 'rts-theme',
+          d = document.querySelector('meta[name="theme-color"]'),
+          r = document.querySelector('[data-page-background]'),
+          a = document.querySelectorAll('[data-theme-toggle]'),
+          s = (t) => {
+            if (!r) return;
+            const e = t === 'dark' ? r.dataset.darkSrc : r.dataset.lightSrc;
+            e && r.getAttribute('src') !== e && r.setAttribute('src', e);
+          },
+          o = (t) => {
+            ((document.documentElement.dataset.theme = t),
+              localStorage.setItem(n, t),
+              d?.setAttribute('content', t === 'dark' ? '#08090d' : '#f7f4ef'),
+              s(t));
+            for (const e of a) {
+              const c = t === 'dark';
+              (e.setAttribute('aria-pressed', String(c)),
+                e.setAttribute('aria-label', 'Переключить тему'));
+            }
+          },
+          l =
+            document.documentElement.dataset.theme === 'dark'
+              ? 'dark'
+              : 'light';
+        o(l);
+        for (const t of a)
+          (t.addEventListener('click', () => {
+            o(
+              document.documentElement.dataset.theme === 'dark'
+                ? 'light'
+                : 'dark',
+            );
+          }),
+            (t.dataset.themeReady = 'true'));
+      </script>
+      <main>
+        <article class="content-page news-article">
+          <a class="back-link" href="/news/">Все новости</a>
+          <time datetime="2026-04-30T09:19:40.843Z"> 30 апреля 2026 г. </time>
+          <h1>Новости</h1>
+          <p class="article-description">Новости на неделю и погода</p>
+          <div class="article-body">
+            <p>​🌍 Главные новости недели (24 – 30 апреля 2026)</p>
+            <p>​Технологии и Космос</p>
+            <p>
+              ​Революция в батареях: Крупный автопроизводитель объявил о начале
+              массового производства твердотельных аккумуляторов. Это обещает
+              зарядку электромобилей за 10 минут и запас хода до 1200 км.
+            </p>
+            <p>
+              ​Лунный форпост: Орбитальная станция Gateway получила новый жилой
+              модуль. Подготовка к высадке людей на южный полюс Луны идет полным
+              ходом.
+            </p>
+            <p>​Экономика и Общество</p>
+            <p>
+              ​Цифровой рывок: Несколько центральных банков Европы официально
+              ввели цифровые валюты в тестовое обращение для розничных платежей.
+            </p>
+            <p>
+              ​ИИ в образовании: ЮНЕСКО опубликовала новые рекомендации по
+              использованию нейросетей в школах, призывая сфокусироваться на
+              критическом мышлении, а не на простом заучивании фактов.
+            </p>
+            <p>​Игры и Интернет</p>
+            <p>
+              ​Обновления платформ: В мире метавселенных и крупных игровых
+              песочниц (включая Roblox) прошли масштабные весенние ивенты с
+              внедрением новых инструментов для авторов контента.
+            </p>
+            <p>
+              ​Киберспорт: Завершился один из крупнейших весенних мейджоров по
+              тактическим шутерам. Победу одержала команда-аутсайдер, что стало
+              главной сенсацией сезона.
+            </p>
+            <p>Вот что ждет разные регионы на ближайшую неделю:</p>
+            <p>​Центральная Россия и Москва</p>
+            <p>
+              Начало мая в столице и окрестностях будет умеренно теплым, но
+              капризным. В первые дни месяца воздух прогреется до +12…+16°C,
+              однако праздничные гуляния могут подпортить кратковременные дожди.
+              К середине недели станет еще теплее — столбики термометров могут
+              доползти до +20°C, но ночи остаются прохладными (всего +4…+8°C),
+              так что куртку далеко не прячь.
+            </p>
+            <p>​Северо-Запад и Санкт-Петербург</p>
+            <p>
+              В Питере и соседних областях весна идет по графику «солнце через
+              тучи». Ожидается около +10…+14°C, но из-за ветра с залива
+              ощущаться будет холоднее. Хорошая новость — осадков в ближайшие
+              дни прогнозируют меньше, чем обычно, так что есть шанс погулять
+              без зонта, если повезет с ветром.
+            </p>
+            <p>​Юг России и Кавказ</p>
+            <p>
+              Здесь уже вовсю жарит. В Краснодаре, Ростове-на-Дону и Крыму на
+              этой неделе стабильные +20…+25°C. Идеальная погода для отдыха:
+              солнце светит ярко, дождей почти нет, а ночи очень мягкие — около
+              +12…+14°C. В Сочи и на побережье чуть свежее из-за моря, но всё
+              равно комфортно.
+            </p>
+            <p>​Урал и Поволжье</p>
+            <p>
+              В этих краях начало мая выдастся суровым. Первая декада месяца
+              ожидается аномально холодной: днем всего +5…+10°C, а ночью в
+              некоторых районах Свердловской области и Пермского края возможны
+              заморозки до -2°C и даже мокрый снег. К концу недели погода начнет
+              выправляться, но пока здесь самая нестабильная обстановка.
+            </p>
+            <p>​Сибирь</p>
+            <p>
+              В Западной Сибири (Новосибирск, Омск) будет свежо — в районе
+              +10…+12°C днем и около нуля ночью. Возможны затяжные дожди, так
+              что земля будет оттаивать медленно. В Восточной Сибири погода
+              похожая, но чуть суше.
+            </p>
+            <p>​Дальний Восток</p>
+            <p>
+              Во Владивостоке и Приморье весна традиционно туманная и влажная.
+              Температура будет держаться в районе +12…+16°C. В Хабаровске чуть
+              теплее, но возможен порывистый ветер.
+            </p>
+          </div>
+        </article>
+      </main>
+      <footer class="site-footer" id="contacts"><p>© 2026 РТС</p></footer>
+    </div>
+  </body>
+</html>

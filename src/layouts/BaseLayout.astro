@@ -1,6 +1,7 @@
 ---
 import '@styles/global.css';
 import { siteConfig } from '@data/site.config';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -9,67 +10,19 @@ interface Props {
 
 const title = Astro.props.title ?? siteConfig.siteName;
 const description = Astro.props.description ?? siteConfig.description;
-const { skin, backgrounds } = siteConfig.visual;
 ---
 
 <!doctype html>
-<html lang="ru" data-skin={skin} data-theme="light">
+<html lang="ru" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f7f4ef" />
-    <script is:inline>
-      (() => {
-        const storageKey = 'rts-theme';
-        const storedTheme = localStorage.getItem(storageKey);
-        const theme =
-          storedTheme === 'light' || storedTheme === 'dark'
-            ? storedTheme
-            : matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light';
-
-        document.documentElement.dataset.theme = theme;
-        document
-          .querySelector('meta[name="theme-color"]')
-          ?.setAttribute('content', theme === 'dark' ? '#08090d' : '#f7f4ef');
-      })();
-    </script>
+    <meta name="theme-color" content="#ffffff" />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body>
-    {
-      skin === 'may9' && (
-        <>
-          <img
-            class="page-background"
-            data-page-background
-            data-light-src={backgrounds.may9.light}
-            data-dark-src={backgrounds.may9.dark}
-            alt=""
-            aria-hidden="true"
-            decoding="async"
-            fetchpriority="high"
-          />
-        </>
-      )
-    }
-    <script is:inline>
-      (() => {
-        const background = document.querySelector('[data-page-background]');
-        if (!background) return;
-
-        const theme =
-          document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
-        const src =
-          theme === 'dark'
-            ? background.dataset.darkSrc
-            : background.dataset.lightSrc;
-
-        if (src) background.setAttribute('src', src);
-      })();
-    </script>
     <slot />
   </body>
 </html>

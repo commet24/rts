@@ -1,8 +1,9 @@
 import { z } from 'zod';
-import may9DayBackground from '../assets/backgrounds/9mayday.png';
-import may9NightBackground from '../assets/backgrounds/9maynight.png';
+import may9DayBackground from '../assets/backgrounds/9mayday.webp';
+import may9NightBackground from '../assets/backgrounds/9maynight.webp';
 import rtsLogo from '../assets/brand/rts-logo.png';
 import rtsLogoLight from '../assets/brand/rts-logo-light.png';
+import rtsLogoRedesign from '../assets/redesign/rtslogo.png';
 
 const trustedHosts = ['ctvroblox.com', 'www.ctvroblox.com'] as const;
 
@@ -29,9 +30,11 @@ const visualSchema = z.object({
 const siteConfigSchema = z.object({
   siteName: z.string().min(1),
   description: z.string().min(1),
+  telegramUrl: z.string().url(),
   brand: z.object({
     logoLightSrc: z.string().min(1),
     logoDarkSrc: z.string().min(1),
+    logoRedesignSrc: z.string().min(1),
     logoAlt: z.string().min(1),
   }),
   visual: visualSchema,
@@ -50,9 +53,11 @@ const siteConfigSchema = z.object({
 export const siteConfig = siteConfigSchema.parse({
   siteName: 'РТС',
   description: 'Прямой эфир телеканала РТС и партнёрские материалы.',
+  telegramUrl: 'https://t.me/RTS_official_STV',
   brand: {
     logoLightSrc: rtsLogoLight.src,
     logoDarkSrc: rtsLogo.src,
+    logoRedesignSrc: rtsLogoRedesign.src,
     logoAlt: 'Логотип РТС',
   },
   visual: {
