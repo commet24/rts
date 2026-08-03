@@ -51,8 +51,9 @@ const siteConfigSchema = z.object({
 });
 
 export const siteConfig = siteConfigSchema.parse({
-  siteName: 'РТС',
-  description: 'Прямой эфир телеканала РТС и партнёрские материалы.',
+  siteName: 'Медиахолдинг РТС',
+  description:
+    'Официальный сайт Медиахолдинга РТС. Смотрите прямой эфир нашего адаптивного телеканала, читайте последние новости и знакомьтесь с проектами наших участников в Roblox и PTFS авиасимуляторе.',
   telegramUrl: 'https://t.me/RTS_official_STV',
   brand: {
     logoLightSrc: rtsLogoLight.src,
